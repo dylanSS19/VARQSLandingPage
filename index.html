@@ -1,0 +1,1340 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VARQS Construcción — Modelos Arquitectónicos de Casas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --fondo: #EEF1EE;
+    --blanco: #FFFFFF;
+    --negro-suave: #1B1C1F;
+    --gris-texto: #55595F;
+    --acento: #2F5D46;
+    --verde-bosque: #1F3A2D;
+    --verde-palido: #E1EAE3;
+    --linea-1: #D3D9D4;
+    --linea-2: #C4CCC6;
+    --campo-form: #F6F8F6;
+    --texto-oscuro-1: #F1F4F1;
+    --texto-oscuro-2: #C9D6CD;
+    --footer-gris-1: #D6D8DC;
+    --footer-gris-2: #A3A7AE;
+    --hero-grad: linear-gradient(135deg, #8FAE9A, #4F7A62, #2E4F3E);
+    --foto-claro-1: #A5BFAE;
+    --foto-claro-2: #7FA38B;
+    --foto-claro-3: #B7CCBC;
+    --foto-oscuro-1: #5F8870;
+    --foto-oscuro-2: #3C6450;
+    --foto-oscuro-3: #6C957B;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background-color: var(--fondo);
+    color: var(--negro-suave);
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, .logo-titulo, .etiqueta-seccion, .numero-proceso, .numero-servicio {
+    font-family: 'Outfit', sans-serif;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .contenedor {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 48px;
+  }
+
+  /* Barra superior */
+  .barra-superior {
+    background: var(--negro-suave);
+    color: var(--footer-gris-1);
+    font-size: 13px;
+    padding: 6px 0;
+  }
+
+  .barra-superior .contenedor {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .barra-izq, .barra-der {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  /* Header */
+  header {
+    background: var(--blanco);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid var(--linea-1);
+  }
+
+  .header-contenido {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .header-redes {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    color: var(--negro-suave);
+    font-weight: 500;
+  }
+
+  .icon-redes {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    flex-shrink: 0;
+  }
+
+  .header-redes a {
+    color: var(--negro-suave);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .header-redes a:hover {
+    color: var(--acento);
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+  }
+
+  .logo-img {
+    height: 40px;
+    width: auto;
+    display: block;
+  }
+
+  nav ul {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  nav a {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--negro-suave);
+    transition: color 0.2s;
+  }
+
+  nav a:hover {
+    color: var(--acento);
+  }
+
+  .btn-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--acento);
+    color: var(--blanco);
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 999px;
+    transition: background 0.2s;
+  }
+
+  .btn-whatsapp:hover {
+    background: #244c38;
+  }
+
+  .btn-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--acento);
+    color: var(--blanco);
+    font-size: 15px;
+    font-weight: 600;
+    padding: 12px 24px;
+    border-radius: 999px;
+    transition: background 0.2s;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+  }
+
+  .btn-pill:hover {
+    background: #244c38;
+  }
+
+  .btn-borde {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: var(--negro-suave);
+    font-size: 15px;
+    font-weight: 600;
+    padding: 12px 24px;
+    border-radius: 999px;
+    border: 1px solid var(--negro-suave);
+    transition: all 0.2s;
+    cursor: pointer;
+    font-family: inherit;
+  }
+
+  .btn-borde:hover {
+    background: var(--negro-suave);
+    color: var(--blanco);
+  }
+
+  /* Etiqueta sección */
+  .etiqueta-seccion {
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--acento);
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  /* Transiciones entre secciones */
+  section:not(.hero) {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.95s ease, transform 0.95s ease;
+  }
+
+  section:not(.hero).visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Hero */
+  .hero {
+    position: relative;
+    min-height: 640px;
+    border-radius: 20px;
+    overflow: hidden;
+    background: var(--hero-grad);
+    margin-bottom: 48px;
+  }
+
+  .hero-foto {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--hero-grad);
+  }
+
+  .etiqueta-foto {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--texto-oscuro-1);
+    background: rgba(31, 58, 45, 0.6);
+    padding: 6px 12px;
+    border-radius: 6px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    backdrop-filter: blur(4px);
+  }
+
+  .hero-tarjeta {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 600px;
+    width: 92%;
+    background: var(--blanco);
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: 0 20px 40px -10px rgba(0,0,0,0.08);
+  }
+
+  .hero-tarjeta .etiqueta-seccion {
+    color: var(--acento);
+  }
+
+  .hero-tarjeta h1 {
+    font-weight: 400;
+    font-size: 52px;
+    line-height: 1.15;
+    margin: 14px 0 18px;
+    color: var(--negro-suave);
+  }
+
+  .hero-tarjeta h1 span {
+    color: var(--acento);
+  }
+
+  .hero-tarjeta p {
+    color: var(--gris-texto);
+    font-size: 17px;
+    margin-bottom: 28px;
+    max-width: 520px;
+  }
+
+  .hero-acciones {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  /* Beneficios */
+  .beneficios {
+    display: flex;
+    gap: 48px;
+    margin-bottom: 72px;
+    flex-wrap: wrap;
+  }
+
+  .beneficio {
+    flex: 1;
+    min-width: 260px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .icono {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    color: var(--acento);
+  }
+
+  .beneficio h3 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    color: var(--negro-suave);
+    margin-bottom: 8px;
+  }
+
+  .beneficio p {
+    color: var(--gris-texto);
+    font-size: 16px;
+  }
+
+  /* Proyectos / Modelos */
+  #modelos {
+    margin-bottom: 72px;
+  }
+
+  .proyectos-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+  }
+
+  .proyecto {
+    display: grid;
+    grid-template-columns: 60% 40%;
+    gap: 48px;
+    align-items: center;
+  }
+
+  .proyecto.invertido {
+    grid-template-columns: 40% 60%;
+  }
+
+  .proyecto.foto-izq .foto-wrap {
+    order: 1;
+  }
+
+  .proyecto.foto-der .texto-wrap {
+    order: 1;
+  }
+
+  .foto-wrap {
+    position: relative;
+    height: 480px;
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--foto-claro-1);
+  }
+
+  .foto-wrap.foto-oscura {
+    background: linear-gradient(135deg, var(--foto-oscuro-1), var(--foto-oscuro-2), var(--foto-oscuro-3));
+  }
+
+  .foto-wrap.foto-clara {
+    background: linear-gradient(135deg, var(--foto-claro-1), var(--foto-claro-2), var(--foto-claro-3));
+  }
+
+  .etiqueta-foto-abajo {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--texto-oscuro-1);
+    background: rgba(31, 58, 45, 0.6);
+    padding: 6px 12px;
+    border-radius: 6px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .texto-wrap h3 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 400;
+    font-size: 38px;
+    color: var(--negro-suave);
+    margin: 8px 0 10px;
+    line-height: 1.2;
+  }
+
+  .linea-proyecto {
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gris-texto);
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+
+  .desc-proyecto {
+    color: var(--gris-texto);
+    font-size: 16px;
+    margin-bottom: 16px;
+  }
+
+  .enlace-proyecto {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--acento);
+    transition: gap 0.2s;
+  }
+
+  .enlace-proyecto:hover {
+    gap: 10px;
+  }
+
+  .arrow {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: var(--acento);
+    stroke-width: 2;
+  }
+
+  /* Servicios */
+  #servicios {
+    background: var(--blanco);
+    padding: 72px 0;
+    margin-bottom: 72px;
+  }
+
+  .servicios-contenido {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+
+  .servicios-texto h2 {
+    font-weight: 300;
+    font-size: 44px;
+    color: var(--negro-suave);
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  .servicios-texto p {
+    color: var(--gris-texto);
+    margin-bottom: 32px;
+  }
+
+  .servicio-item {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 16px;
+    align-items: start;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--linea-1);
+  }
+
+  .servicio-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .numero-servicio {
+    font-weight: 300;
+    font-size: 40px;
+    color: var(--acento);
+    line-height: 1;
+  }
+
+  .servicio-titulo {
+    font-weight: 600;
+    font-size: 17px;
+    color: var(--negro-suave);
+    margin-bottom: 6px;
+  }
+
+  .servicio-desc {
+    color: var(--gris-texto);
+    font-size: 16px;
+  }
+
+  /* Proceso */
+  #proceso {
+    margin-bottom: 72px;
+  }
+
+  .proceso-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 24px;
+  }
+
+  .tarjeta-proceso {
+    background: var(--blanco);
+    border-radius: 14px;
+    padding: 28px;
+    border: 1px solid var(--linea-1);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .numero-proceso {
+    font-weight: 300;
+    font-size: 30px;
+    color: var(--acento);
+    line-height: 1;
+  }
+
+  .pastilla {
+    display: inline-block;
+    background: var(--verde-palido);
+    color: var(--verde-bosque);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 6px;
+    width: fit-content;
+  }
+
+  .tarjeta-proceso h4 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    color: var(--negro-suave);
+    margin: 0;
+  }
+
+  .tarjeta-proceso p {
+    color: var(--gris-texto);
+    font-size: 15px;
+    margin: 0;
+  }
+
+  /* Garantías */
+  .garantias {
+    background: var(--verde-bosque);
+    color: var(--texto-oscuro-1);
+    padding: 64px 0;
+    margin-bottom: 72px;
+  }
+
+  .garantias h2 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    font-size: 40px;
+    color: var(--texto-oscuro-1);
+    line-height: 1.25;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+
+  .garantias-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    text-align: center;
+  }
+
+  .garantia h4 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+    font-size: 22px;
+    color: var(--texto-oscuro-1);
+    margin-bottom: 12px;
+  }
+
+  .garantia p {
+    color: var(--texto-oscuro-2);
+    font-size: 16px;
+  }
+
+  /* Contacto */
+  #contacto {
+    margin-bottom: 64px;
+  }
+
+  .contacto-caja {
+    max-width: 1280px;
+    margin: 0 auto;
+    background: var(--blanco);
+    border-radius: 20px;
+    padding: 56px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    border: 1px solid var(--linea-1);
+  }
+
+  .contacto-texto .etiqueta-seccion {
+    margin-bottom: 12px;
+  }
+
+  .contacto-texto h2 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+    font-size: 42px;
+    color: var(--negro-suave);
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  .contacto-texto p {
+    color: var(--gris-texto);
+    margin-bottom: 24px;
+  }
+
+  .contacto-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .campo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .campo label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--negro-suave);
+  }
+
+  .campo input,
+  .campo textarea {
+    background: var(--campo-form);
+    border: 1px solid var(--linea-2);
+    border-radius: 10px;
+    padding: 14px 16px;
+    font-family: inherit;
+    font-size: 16px;
+    color: var(--negro-suave);
+    width: 100%;
+  }
+
+  .campo textarea {
+    min-height: 100px;
+    resize: vertical;
+  }
+
+  .btn-agenda {
+    background: var(--negro-suave);
+    color: var(--blanco);
+    font-size: 15px;
+    font-weight: 600;
+    padding: 14px 24px;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.2s;
+    margin-top: 8px;
+  }
+
+  .btn-agenda:hover {
+    background: var(--acento);
+  }
+
+  /* Footer */
+  footer {
+    background: var(--negro-suave);
+    color: var(--footer-gris-1);
+    padding: 48px 0;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .footer-contenido {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+
+  .footer-logo {
+    color: var(--blanco);
+    font-weight: 600;
+    font-size: 20px;
+    letter-spacing: 0.12em;
+    font-family: 'Outfit', sans-serif;
+  }
+
+  .footer-redes {
+    font-size: 14px;
+    color: var(--footer-gris-2);
+  }
+
+  .footer-redes a {
+    color: var(--footer-gris-1);
+    text-decoration: underline;
+    transition: color 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+  }
+
+  .icon-redes {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    flex-shrink: 0;
+  }
+
+  .footer-redes a:hover {
+    color: var(--acento);
+  }
+
+  .footer-copy {
+    font-size: 13px;
+    color: var(--footer-gris-2);
+  }
+
+  .modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(27, 28, 31, 0.7);
+  backdrop-filter: blur(6px);
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.modal-overlay.abierto {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.95);
+  width: 92%;
+  max-width: 1000px;
+  max-height: 85vh;
+  background: var(--blanco);
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.modal-overlay.abierto .modal {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.modal-cerrar {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  font-size: 28px;
+  color: var(--negro-suave);
+  cursor: pointer;
+  line-height: 1;
+  padding: 4px;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+.modal-cerrar:hover {
+  background: var(--campo-form);
+}
+
+.modal h2 {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 300;
+  font-size: 36px;
+  color: var(--negro-suave);
+  line-height: 1.2;
+  margin: 0;
+}
+
+.modal-galeria {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+  margin-top: 8px;
+}
+
+.galeria-item {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  background: var(--foto-claro-1);
+}
+
+.galeria-item.foto-oscura {
+  background: linear-gradient(135deg, var(--foto-oscuro-1), var(--foto-oscuro-2), var(--foto-oscuro-3));
+}
+
+.galeria-item.foto-clara {
+  background: linear-gradient(135deg, var(--foto-claro-1), var(--foto-claro-2), var(--foto-claro-3));
+}
+
+.etiqueta-galeria {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--texto-oscuro-1);
+  background: rgba(31, 58, 45, 0.6);
+  padding: 5px 10px;
+  border-radius: 6px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.cerrar-con-teclado {
+  position: absolute;
+  bottom: 16px;
+  right: 20px;
+  font-size: 13px;
+  color: var(--gris-texto);
+}
+
+body.modal-abierto {
+  overflow: hidden;
+}
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .contenedor {
+      padding: 0 24px;
+    }
+
+    .barra-superior .contenedor {
+      flex-direction: column;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .barra-izq, .barra-der {
+      gap: 12px;
+    }
+
+    .header-contenido {
+      flex-direction: column;
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .header-redes {
+      justify-content: center;
+      width: 100%;
+      font-size: 14px;
+    }
+
+    nav ul {
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .hero-tarjeta {
+      position: relative;
+      bottom: auto;
+      left: auto;
+      transform: none;
+      width: 100%;
+      max-width: 100%;
+      margin-top: 24px;
+    }
+
+    .hero {
+      min-height: 420px;
+    }
+
+    .hero-acciones {
+      flex-direction: column;
+    }
+
+    .beneficios {
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .proyecto,
+    .proyecto.invertido {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .foto-wrap {
+      height: 320px;
+    }
+
+    .servicios-contenido {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .proceso-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .garantias-grid {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+
+    .contacto-caja {
+      grid-template-columns: 1fr;
+      gap: 40px;
+      padding: 40px 24px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .hero-tarjeta h1 {
+      font-size: 40px;
+    }
+
+    .texto-wrap h3 {
+      font-size: 30px;
+    }
+
+    .garantias h2 {
+      font-size: 32px;
+    }
+
+    .contacto-texto h2 {
+      font-size: 32px;
+    }
+  }
+</style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="contenedor">
+      <div class="header-contenido">
+        <a href="#" class="logo">
+          <img class="logo-img" src="https://assets.cdn.filesafe.space/8dk0nkXlnkfZckgdGD7v/media/6aa478fe78c7b42d15c19d93.png" alt="VARQS Construcción">
+        </a>
+        <nav>
+          <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#nosotros">Nosotros</a></li>
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#modelos">Modelos</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+          </ul>
+        </nav>
+        <a href="#contacto" class="btn-whatsapp">Escríbenos por WhatsApp</a>
+        <div class="header-redes">
+          <a href="https://www.instagram.com/varqsstudio/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;">
+            <svg class="icon-redes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="17.5" x2="17.51" y2="17.5"></line></svg>
+            Instagram
+          </a>
+          <a href="https://www.facebook.com/share/19jVqSLV6w/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;margin-left:12px;">
+            <svg class="icon-redes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+            Facebook
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section id="inicio" class="hero">
+    <div class="hero-foto"></div>
+    <div class="etiqueta-foto">FOTO PRINCIPAL · [NOMBRE DEL PROYECTO]</div>
+    <div class="hero-tarjeta">
+      <span class="etiqueta-seccion">DE LA IDEA AL PLANO CONSTRUCTIVO</span>
+      <h1>Construimos tu hogar<span> listo para habitar.</span></h1>
+      <p>Construcción de casas y modelos arquitectónicos personalizados, con presupuestos claros y acompañamiento desde el primer día.</p>
+      <div class="hero-acciones">
+        <button class="btn-pill">Hablemos de tu proyecto</button>
+        <button class="btn-borde" id="abrir-modal-modelos">Ver modelos</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Beneficios -->
+  <section class="beneficios">
+    <div class="beneficio">
+      <svg class="icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+      <div>
+        <h3>Modelos arquitectónicos</h3>
+        <p>Visualiza tu casa antes de construir con diseños en 3D y planos detallados.</p>
+      </div>
+    </div>
+    <div class="beneficio">
+      <svg class="icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="3" x2="8" y2="17"></line><path d="M20 13H2"></path></svg>
+      <div>
+        <h3>Presupuesto desglosado</h3>
+        <p>Costos reales de materiales, mano de obra y subcontratos, sin sorpresas.</p>
+      </div>
+    </div>
+    <div class="beneficio">
+      <svg class="icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+      <div>
+        <h3>Seguimiento semanal</h3>
+        <p>Reuniones de avance durante toda la construcción de tu vivienda.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Nosotros -->
+  <section id="nosotros">
+    <div class="contenedor">
+      <span class="etiqueta-seccion">NOSOTROS</span>
+      <h2 style="font-family:'Outfit',sans-serif;font-weight:300;font-size:46px;color:var(--negro-suave);margin-bottom:24px;line-height:1.2;">Construyendo espacios para vivir mejor.</h2>
+      <p style="color:var(--gris-texto);font-size:18px;max-width:700px;">Somos una empresa dedicada a la construcción residencial y la creación de modelos arquitectónicos de casas, comprometidos con la calidad, los tiempos de entrega y la satisfacción de cada familia.</p>
+    </div>
+  </section>
+
+  <!-- Servicios -->
+  <section id="servicios">
+    <div class="contenedor">
+      <div class="servicios-contenido">
+        <div class="servicios-texto">
+          <span class="etiqueta-seccion">SERVICIOS</span>
+          <h2>Construcción y modelos, de la idea a la entrega.</h2>
+          <p>Obra nueva, remodelación y modelos arquitectónicos: te acompañamos desde el diseño hasta las llaves de tu casa.</p>
+        </div>
+        <div class="servicios-lista">
+          <div class="servicio-item">
+            <span class="numero-servicio">01</span>
+            <div>
+              <div class="servicio-titulo">Construcción de casas</div>
+              <div class="servicio-desc">Construcción completa de viviendas residenciales, desde cimentación hasta acabados finales.</div>
+            </div>
+          </div>
+          <div class="servicio-item">
+            <span class="numero-servicio">02</span>
+            <div>
+              <div class="servicio-titulo">Modelos arquitectónicos</div>
+              <div class="servicio-desc">Diseño y creación de maquetas y visualizaciones en 3D de casas personalizadas.</div>
+            </div>
+          </div>
+          <div class="servicio-item">
+            <span class="numero-servicio">03</span>
+            <div>
+              <div class="servicio-titulo">Remodelación y ampliación</div>
+              <div class="servicio-desc">Renovación de espacios existentes, ampliaciones y mejoras estructurales y de acabados.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modelos / Proyectos -->
+  <section id="modelos">
+    <div class="contenedor">
+      <span class="etiqueta-seccion">MODELOS ARQUITECTÓNICOS</span>
+      <h2 style="font-family:'Outfit',sans-serif;font-weight:300;font-size:46px;color:var(--negro-suave);margin-bottom:48px;line-height:1.2;">Casas pensadas por cómo vives.</h2>
+
+      <div class="proyectos-lista">
+        <div class="proyecto foto-izq">
+          <div class="foto-wrap foto-clara">
+            <div class="etiqueta-foto-abajo">FOTO · MODELO CASA MODERNA</div>
+          </div>
+          <div class="texto-wrap">
+            <span class="linea-proyecto">MODELO RESIDENCIAL · [M² / UBICACIÓN]</span>
+            <h3>Casa Moderna</h3>
+            <p class="desc-proyecto">[DESCRIPCIÓN]</p>
+            <a href="#" class="enlace-proyecto">Ver el modelo →<svg class="arrow" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          </div>
+        </div>
+
+        <div class="proyecto invertido foto-der">
+          <div class="texto-wrap">
+            <span class="linea-proyecto">MODELO RESIDENCIAL · [M² / UBICACIÓN]</span>
+            <h3>Casa Minimalista</h3>
+            <p class="desc-proyecto">[DESCRIPCIÓN]</p>
+            <a href="#" class="enlace-proyecto">Ver el modelo →<svg class="arrow" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          </div>
+          <div class="foto-wrap foto-oscura">
+            <div class="etiqueta-foto-abajo">FOTO · MODELO CASA MINIMALISTA</div>
+          </div>
+        </div>
+
+        <div class="proyecto foto-izq">
+          <div class="foto-wrap foto-clara">
+            <div class="etiqueta-foto-abajo">FOTO · MODELO CASA FAMILIAR</div>
+          </div>
+          <div class="texto-wrap">
+            <span class="linea-proyecto">MODELO RESIDENCIAL · [M² / UBICACIÓN]</span>
+            <h3>Casa Familiar</h3>
+            <p class="desc-proyecto">[DESCRIPCIÓN]</p>
+            <a href="#" class="enlace-proyecto">Ver el modelo →<svg class="arrow" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Proceso -->
+  <section id="proceso">
+    <div class="contenedor">
+      <span class="etiqueta-seccion">CÓMO TRABAJAMOS</span>
+      <h2 style="font-family:'Outfit',sans-serif;font-weight:300;font-size:46px;color:var(--negro-suave);text-align:center;margin-bottom:40px;line-height:1.2;">Un proceso claro, en seis etapas.</h2>
+      <div class="proceso-grid">
+        <article class="tarjeta-proceso">
+          <span class="numero-proceso">01</span>
+          <span class="pastilla">1 semana</span>
+          <h4>Visita inicial y levantamiento</h4>
+          <p>Entrega de análisis de sitio y necesidades del cliente.</p>
+        </article>
+        <article class="tarjeta-proceso">
+          <span class="numero-proceso">02</span>
+          <span class="pastilla">3 a 5 semanas</span>
+          <h4>Desarrollo del modelo arquitectónico</h4>
+          <p>Diseño en 3D, planos base y visualizaciones de la vivienda.</p>
+        </article>
+        <article class="tarjeta-proceso">
+          <span class="numero-proceso">03</span>
+          <span class="pastilla">1 a 2 semanas</span>
+          <h4>Ajustes y aprobación del modelo</h4>
+          <p>Revisamos juntos los renders y afinamos la propuesta final.</p>
+        </article>
+        <article class="tarjeta-proceso">
+          <span class="numero-proceso">04</span>
+          <span class="pastilla">4 a 8 semanas</span>
+          <h4>Planos constructivos y coordinación</h4>
+          <p>Documentación técnica completa para iniciar la obra.</p>
+        </article>
+        <article class="tarjeta-proceso">
+          <span class="numero-proceso">05</span>
+          <span class="pastilla">Variable</span>
+          <h4>Construcción y seguimiento</h4>
+          <p>Ejecución de obra con reuniones semanales de avance.</p>
+        </article>
+        <article class="tarjeta-proceso">
+          <span class="numero-proceso">06</span>
+          <span class="pastilla">1 a 2 semanas</span>
+          <h4>Entrega y llaves</h4>
+          <p>Revisión final, ajustes menores y entrega de la vivienda.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Garantías -->
+  <section class="garantías">
+    <div class="contenedor">
+      <h2>Construye con claridad antes de invertir.</h2>
+      <div class="garantias-grid">
+        <div class="garantia">
+          <h4>Hasta 2 rediseños del modelo</h4>
+          <p>Si el modelo inicial no representa tu visión, trabajamos hasta 2 propuestas de rediseño sin costo adicional.</p>
+        </div>
+        <div class="garantia">
+          <h4>Seguimiento semanal de obra</h4>
+          <p>Reuniones semanales para mantener claridad sobre avances, decisiones y evolución del proyecto.</p>
+        </div>
+        <div class="garantia">
+          <h4>Presupuesto cerrado y desglosado</h4>
+          <p>Costos detallados de materiales, mano de obra y subcontratos, con reportes de avance.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contacto -->
+  <section id="contacto">
+    <div class="contacto-caja">
+      <div class="contacto-texto">
+        <span class="etiqueta-seccion">PRÓXIMO PASO</span>
+        <h2>Tu casa puede empezar con un plano y un presupuesto claro.</h2>
+        <p>Cuéntanos tu proyecto y agendemos una reunión. Uno de nuestros arquitectos te contacta en las próximas horas. Tus datos son confidenciales.</p>
+        <a href="https://wa.me/[NÚMERO]" class="btn-pill" style="margin-top:8px;">Escríbenos por WhatsApp: [NÚMERO]</a>
+      </div>
+      <form class="contacto-form" action="#">
+        <div class="campo">
+          <label for="nombre">Nombre completo</label>
+          <input type="text" id="nombre" name="nombre" required placeholder="Juan Pérez">
+        </div>
+        <div class="campo">
+          <label for="contacto">WhatsApp o correo</label>
+          <input type="text" id="contacto" name="contacto" required placeholder="+506 0000 0000 o correo@ejemplo.com">
+        </div>
+        <div class="campo">
+          <label for="idea">Cuéntanos tu idea</label>
+          <textarea id="idea" name="idea" rows="4" required placeholder="Tipo de casa, terreno, m² aproximados, ubicación..."></textarea>
+        </div>
+        <button type="submit" class="btn-agenda">Agenda una reunión</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="contenedor">
+      <div class="footer-contenido">
+        <div class="footer-logo">VARQS<span style="color:var(--footer-gris-2);"> CONSTRUCCIÓN</span></div>
+        <div class="footer-redes">
+          <a href="https://www.instagram.com/varqsstudio/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;">
+            <svg class="icon-redes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="17.5" x2="17.51" y2="17.5"></line></svg>
+            @varqsstudio
+          </a>
+          <a href="https://www.facebook.com/share/19jVqSLV6w/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;margin-left:12px;">
+            <svg class="icon-redes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+            Facebook
+          </a>
+        </div>
+        <div class="footer-copy">© 2026 VARQS Construcción. Todos los derechos reservados.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal galería de modelos -->
+  <div class="modal-overlay" id="overlay-modelos">
+    <button class="modal-cerrar" id="cerrar-modal-modelos" aria-label="Cerrar modal">×</button>
+    <div class="modal" id="modal-modelos">
+      <h2>Modelos Arquitectónicos</h2>
+      <div class="modal-galeria">
+        <div class="galeria-item foto-clara">
+          <div class="etiqueta-galeria">FOTO · CASA MODERNA</div>
+        </div>
+        <div class="galeria-item foto-oscura">
+          <div class="etiqueta-galeria">FOTO · CASA MINIMALISTA</div>
+        </div>
+        <div class="galeria-item foto-clara">
+          <div class="etiqueta-galeria">FOTO · CASA FAMILIAR</div>
+        </div>
+        <div class="galeria-item foto-oscura">
+          <div class="etiqueta-galeria">FOTO · COCINA Y LIVING</div>
+        </div>
+        <div class="galeria-item foto-clara">
+          <div class="etiqueta-galeria">FOTO · PATIO INTERIOR</div>
+        </div>
+        <div class="galeria-item foto-oscura">
+          <div class="etiqueta-galeria">FOTO · FACHADA Y VEGETACIÓN</div>
+        </div>
+      </div>
+      <div class="cerrar-con-teclado">Presiona ESC para cerrar</div>
+    </div>
+  </div>
+
+  <!-- Panel menú móvil -->
+  <div class="overlay-fondo" id="overlay-menu"></div>
+  <div class="menu-panel" id="menu-panel">
+    <button class="menu-cerrar" id="menu-cerrar" aria-label="Cerrar menú">×</button>
+    <ul>
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#modelos">Modelos</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </div>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -80px 0px' });
+
+    document.querySelectorAll('section:not(.hero)').forEach(el => observer.observe(el));
+    const btnAbrir = document.getElementById('abrir-modal-modelos');
+    const overlayModal = document.getElementById('overlay-modelos');
+    const btnCerrarModal = document.getElementById('cerrar-modal-modelos');
+
+    function abrirModal() {
+      overlayModal.classList.add('abierto');
+      document.body.classList.add('modal-abierto');
+    }
+
+    function cerrarModal() {
+      overlayModal.classList.remove('abierto');
+      document.body.classList.remove('modal-abierto');
+    }
+
+    btnAbrir.addEventListener('click', abrirModal);
+    btnCerrarModal.addEventListener('click', cerrarModal);
+    overlayModal.addEventListener('click', (e) => {
+      if (e.target === overlayModal) cerrarModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && overlayModal.classList.contains('abierto')) {
+        cerrarModal();
+      }
+    });
+  </script>
+</body>
+</html>
