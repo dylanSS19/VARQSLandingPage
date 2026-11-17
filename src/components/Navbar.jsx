@@ -17,16 +17,7 @@ export default function Navbar() {
         aria-label="Principal"
         className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6"
       >
-        {/* 
-            <img src="/logo-negativo.svg" alt="VARQS Studio" className="h-10 w-auto" />
-        */}
-        <a
-          href="#inicio"
-          className="flex items-baseline gap-2 text-2xl font-bold tracking-wide text-varqs-mint"
-        >
-          VARQS
-          <span className="text-xs font-normal tracking-[0.35em]">studio</span>
-        </a>
+        {<img src="/VARQS.png" alt="VARQS Studio" className="h-20 w-auto" />}
 
         <ul className="hidden items-center gap-10 md:flex">
           {links.map((link) => (
