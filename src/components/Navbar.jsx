@@ -8,23 +8,27 @@ const links = [
   { label: 'Contacto', href: '#contacto' },
 ]
 
+const cta = { label: 'Agenda una llamada', href: '#contacto' }
+
 export default function Navbar() {
   const [open, setOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-50 border-b border-varqs-mint/30 bg-varqs-navy">
+    <header className="sticky top-0 z-50 border-b border-white/10 bg-varqs-navy">
       <nav
         aria-label="Principal"
-        className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6"
+        className="mx-auto flex h-18 max-w-7xl items-center justify-between px-6 md:grid md:grid-cols-[1fr_auto_1fr]"
       >
-        {<img src="/VARQS.png" alt="VARQS Studio" className="h-20 w-auto" />}
+        <a href="#inicio" aria-label="VARQS Studio, ir al inicio" className="justify-self-start">
+          <img src="/VARQS.png" alt="VARQS Studio" className="h-14 w-auto" />
+        </a>
 
-        <ul className="hidden items-center gap-10 md:flex">
+        <ul className="hidden items-center gap-9 md:flex">
           {links.map((link) => (
             <li key={link.href}>
               <a
                 href={link.href}
-                className="text-sm uppercase tracking-widest text-white transition-colors hover:text-varqs-mint focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-varqs-mint"
+                className="text-sm text-white/90 transition-colors hover:text-varqs-mint focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-varqs-mint"
               >
                 {link.label}
               </a>
@@ -32,17 +36,30 @@ export default function Navbar() {
           ))}
         </ul>
 
+        <a
+          href={cta.href}
+          className="group hidden items-center gap-2 justify-self-end text-sm font-semibold text-varqs-mint transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-varqs-mint md:inline-flex"
+        >
+          {cta.label}
+          <span
+            aria-hidden="true"
+            className="transition-transform duration-300 group-hover:translate-x-1 motion-reduce:transition-none"
+          >
+            →
+          </span>
+        </a>
+
         <button
           type="button"
           onClick={() => setOpen((value) => !value)}
           aria-expanded={open}
-          aria-controls="menu-movil"
+          aria-controls="mobile-menu"
           aria-label={open ? 'Cerrar menú' : 'Abrir menú'}
           className="rounded p-2 text-varqs-mint focus-visible:outline-2 focus-visible:outline-varqs-mint md:hidden"
         >
           <svg
-            width="28"
-            height="28"
+            width="26"
+            height="26"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -59,23 +76,31 @@ export default function Navbar() {
         </button>
       </nav>
 
-      {/* Menú desplegable (celular) */}
       {open && (
         <ul
-          id="menu-movil"
-          className="border-t border-varqs-mint/30 px-6 pb-4 md:hidden"
+          id="mobile-menu"
+          className="border-t border-white/10 px-6 pb-4 md:hidden"
         >
           {links.map((link) => (
             <li key={link.href}>
               <a
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="block py-3 text-sm uppercase tracking-widest text-white hover:text-varqs-mint"
+                className="block py-3 text-sm text-white/90 hover:text-varqs-mint"
               >
                 {link.label}
               </a>
             </li>
           ))}
+          <li>
+            <a
+              href={cta.href}
+              onClick={() => setOpen(false)}
+              className="block py-3 text-sm font-semibold text-varqs-mint"
+            >
+              {cta.label} →
+            </a>
+          </li>
         </ul>
       )}
     </header>

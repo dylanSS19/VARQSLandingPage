@@ -1,30 +1,34 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
+import Casa1 from '../assets/Casa1.jpg'
+import Casa2 from '../assets/Casa2.jpg'
+import Casa3 from '../assets/Casa3.jpg'
 
 const slides = [
-  {
-    id: 1,
-    title: 'Diseño 1',
-    subtitle: 'Reemplazar por el nombre y una frase corta del proyecto',
-    image: null,
-    bg: 'bg-varqs-navy',
-  },
-  {
-    id: 2,
-    title: 'Diseño 2',
-    subtitle: 'Reemplazar por el nombre y una frase corta del proyecto',
-    image: null,
-    bg: 'bg-slate-700',
-  },
-  {
-    id: 3,
-    title: 'Diseño 3',
-    subtitle: 'Reemplazar por el nombre y una frase corta del proyecto',
-    image: null,
-    bg: 'bg-slate-600',
-  },
+  { id: 1, src: Casa1, caption: 'Casa Umbral / Concepto' },
+  { id: 2, src: Casa2, caption: 'Casa 2 / Concepto' },
+  { id: 3, src: Casa3, caption: 'Casa 3 / Concepto' },
 ]
 
 const INTERVAL_MS = 6000
+
+const pad = (number) => String(number).padStart(2, '0')
+
+function Chevron({ direction }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      className="size-4"
+    >
+      <path d={direction === 'left' ? 'M15 5l-7 7 7 7' : 'M9 5l7 7-7 7'} />
+    </svg>
+  )
+}
 
 export default function HeroCarousel() {
   const [current, setCurrent] = useState(0)
@@ -57,19 +61,16 @@ export default function HeroCarousel() {
     const diff = event.changedTouches[0].clientX - touchStartX.current
     touchStartX.current = null
     if (Math.abs(diff) < 50) return
-    if (diff < 0) {
-      next()
-    } else {
-      prev()
-    }
+    if (diff < 0) next()
+    else prev()
   }
 
   return (
     <section
       id="inicio"
       aria-roledescription="carousel"
-      aria-label="Diseños destacados"
-      className="relative h-[70vh] min-h-[105] w-full overflow-hidden bg-varqs-navy"
+      aria-label="Proyectos destacados"
+      className="relative h-[calc(100svh-4.5rem)] min-h-150 w-full overflow-hidden bg-varqs-navy text-white"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocus={() => setPaused(true)}
@@ -77,96 +78,99 @@ export default function HeroCarousel() {
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
-      <div
-        className="flex h-full transition-transform duration-700 ease-in-out motion-reduce:transition-none"
-        style={{ transform: `translateX(-${current * 100}%)` }}
-      >
-        {slides.map((slide, index) => (
-          <div
-            key={slide.id}
-            role="group"
-            aria-roledescription="slide"
-            aria-label={`${index + 1} de ${total}`}
-            aria-hidden={index !== current}
-            className={`relative h-full w-full shrink-0 ${slide.bg}`}
+      {slides.map((slide, index) => (
+        <img
+          key={slide.id}
+          src={slide.src}
+          alt=""
+          aria-hidden="true"
+          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ease-in-out motion-reduce:transition-none ${
+            index === current ? 'opacity-100' : 'opacity-0'
+          }`}
+        />
+      ))}
+
+      <div className="absolute inset-0 bg-linear-to-r from-varqs-navy/80 via-varqs-navy/35 to-transparent" />
+      <div className="absolute inset-0 bg-linear-to-t from-varqs-navy/70 via-transparent to-varqs-navy/30" />
+
+      <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col px-6">
+        <div className="flex flex-1 flex-col justify-center py-12">
+          <p className="mb-6 text-[11px] font-semibold uppercase tracking-widest text-varqs-mint">
+            VARQS Studio / Costa Rica
+          </p>
+
+          <h1 className="max-w-4xl text-balance text-4xl font-bold leading-[1.05] sm:text-5xl lg:text-6xl">
+            Diseño arquitectónico con identidad tropical
+          </h1>
+
+          <p className="mt-8 max-w-md text-base leading-relaxed text-white/90 sm:text-lg">
+            Arquitectura, interiores y paisaje.
+            <br />
+            Una visión integral, diseñada para ti.
+          </p>
+
+          <a
+            href="#contacto"
+            className="group mt-10 inline-flex w-fit items-center gap-3 bg-varqs-red px-7 py-3.5 text-sm font-semibold text-white transition hover:brightness-110 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-varqs-mint"
           >
-            {slide.image && (
-              <img
-                src={slide.image}
-                alt={slide.title}
-                className="absolute inset-0 h-full w-full object-cover"
-              />
-            )}
-            <div className="absolute inset-0 bg-varqs-navy/50" />
+            Solicitar una consulta
+            <span
+              aria-hidden="true"
+              className="transition-transform duration-300 group-hover:translate-x-1 motion-reduce:transition-none"
+            >
+              →
+            </span>
+          </a>
 
-            <div className="relative z-10 flex h-full flex-col justify-end px-6 pb-20 sm:px-12 lg:px-20">
-              <h2 className="text-3xl font-bold text-white sm:text-5xl">
-                {slide.title}
-              </h2>
-              <p className="mt-3 max-w-xl text-base text-white/80 sm:text-lg">
-                {slide.subtitle}
-              </p>
-            </div>
+          <p className="mt-4 text-xs text-white/70">
+            Consultoría de diseño · No construimos
+          </p>
+        </div>
+
+        <div className="flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-white/20 py-5">
+          <span
+            className="text-xs font-semibold tracking-wider text-varqs-mint"
+            aria-hidden="true"
+          >
+            {pad(current + 1)} / {pad(total)}
+          </span>
+
+          <p
+            aria-live="polite"
+            className="text-[11px] uppercase tracking-wider text-white/80"
+          >
+            <span className="sr-only">
+              Diapositiva {current + 1} de {total}:{' '}
+            </span>
+            {slides[current].caption}
+          </p>
+
+          <div className="flex gap-2">
+            <button
+              type="button"
+              onClick={prev}
+              aria-label="Proyecto anterior"
+              className="rounded-full border border-white/30 p-1.5 text-white transition-colors hover:border-varqs-mint hover:text-varqs-mint focus-visible:outline-2 focus-visible:outline-varqs-mint"
+            >
+              <Chevron direction="left" />
+            </button>
+            <button
+              type="button"
+              onClick={next}
+              aria-label="Proyecto siguiente"
+              className="rounded-full border border-white/30 p-1.5 text-white transition-colors hover:border-varqs-mint hover:text-varqs-mint focus-visible:outline-2 focus-visible:outline-varqs-mint"
+            >
+              <Chevron direction="right" />
+            </button>
           </div>
-        ))}
-      </div>
 
-      <button
-        type="button"
-        onClick={prev}
-        aria-label="Diseño anterior"
-        className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full bg-varqs-navy/60 p-3 text-white transition-colors hover:bg-varqs-mint hover:text-varqs-navy focus-visible:outline-2 focus-visible:outline-varqs-mint sm:left-6"
-      >
-        <svg
-          width="22"
-          height="22"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          aria-hidden="true"
-        >
-          <path d="M15 5l-7 7 7 7" />
-        </svg>
-      </button>
-      <button
-        type="button"
-        onClick={next}
-        aria-label="Diseño siguiente"
-        className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-varqs-navy/60 p-3 text-white transition-colors hover:bg-varqs-mint hover:text-varqs-navy focus-visible:outline-2 focus-visible:outline-varqs-mint sm:right-6"
-      >
-        <svg
-          width="22"
-          height="22"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          aria-hidden="true"
-        >
-          <path d="M9 5l7 7-7 7" />
-        </svg>
-      </button>
-
-      <div className="absolute bottom-6 left-1/2 flex -translate-x-1/2 gap-2">
-        {slides.map((slide, index) => (
-          <button
-            key={slide.id}
-            type="button"
-            onClick={() => setCurrent(index)}
-            aria-label={`Ir al diseño ${index + 1}`}
-            aria-current={index === current}
-            className={`h-2.5 rounded-full transition-all focus-visible:outline-2 focus-visible:outline-varqs-mint ${
-              index === current
-                ? 'w-8 bg-varqs-mint'
-                : 'w-2.5 bg-white/60 hover:bg-white'
-            }`}
-          />
-        ))}
+          <a
+            href="#nosotros"
+            className="ml-auto text-[11px] font-semibold uppercase tracking-widest text-white transition-colors hover:text-varqs-mint focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-varqs-mint"
+          >
+            Explora el estudio <span aria-hidden="true">↓</span>
+          </a>
+        </div>
       </div>
     </section>
   )
