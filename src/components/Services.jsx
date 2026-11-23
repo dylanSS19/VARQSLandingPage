@@ -5,11 +5,11 @@ function Icon({ children }) {
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      strokeWidth="1.8"
+      strokeWidth="1.4"
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden="true"
-      className="size-6"
+      className="relative size-8"
     >
       {children}
     </svg>
@@ -95,48 +95,48 @@ const SERVICES = [
   },
 ]
 
+const pad = (number) => String(number).padStart(2, '0')
+
 export default function Services() {
   return (
     <section
       id="servicios"
-      className="scroll-mt-20 bg-neutral-50 px-6 py-16 sm:px-12 lg:px-20 lg:py-24"
+      className="scroll-mt-20 bg-varqs-mint px-6 py-16 sm:px-12 lg:px-20 lg:py-24"
     >
       <div className="mx-auto max-w-6xl">
-        <header className="mb-10">
+        <header className="mb-12 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+          {/* The line is navy here because the section background is mint */}
           <h2
             tabIndex={0}
-            className="relative inline-block pb-2 text-3xl font-bold
-            text-varqs-navy outline-none after:absolute after:bottom-0 
-            after:left-0 after:h-0.75 after:w-full after:origin-center 
-            after:scale-x-0 after:rounded-full 
-            after:bg-varqs-mint after:transition-transform 
-            after:duration-500 after:ease-out hover:after:scale-x-100 
-            focus-visible:after:scale-x-100 motion-reduce:after:transition-none 
-            sm:text-4xl"
+            className="relative inline-block self-start pb-2 text-4xl font-bold leading-tight text-varqs-navy outline-none after:absolute after:bottom-0 after:left-0 after:h-0.75 after:w-full after:origin-center after:scale-x-0 after:rounded-full after:bg-varqs-navy after:transition-transform after:duration-500 after:ease-out hover:after:scale-x-100 focus-visible:after:scale-x-100 motion-reduce:after:transition-none sm:text-5xl"
           >
             Servicios
           </h2>
-          <p className="mt-2 text-sm text-varqs-navy/60">
+          <p className="max-w-xs text-sm leading-6 text-varqs-navy md:text-right">
             Lo que ofrecemos en cada proyecto
           </p>
         </header>
 
-        <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {SERVICES.map(({ title, text, icon: ServiceIcon }) => (
+        <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {SERVICES.map(({ title, text, icon: ServiceIcon }, index) => (
             <li
               key={title}
-              className="group flex aspect-square flex-col justify-center 
-              rounded-lg bg-white p-7 shadow-sm transition duration-300 
-              hover:-translate-y-1.5 hover:shadow-xl hover:shadow-varqs-navy/10 
-              motion-reduce:transition-none motion-reduce:hover:translate-y-0"
+              className="group flex flex-col bg-white p-7 shadow-sm transition duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-varqs-navy/15 motion-reduce:transition-none motion-reduce:hover:translate-y-0"
             >
-              <span className="mb-5 grid size-13 place-items-center rounded-full bg-varqs-navy text-white transition-colors duration-300 group-hover:bg-varqs-mint group-hover:text-varqs-navy">
+              {/* Mint circle fills from the center on card hover */}
+              <span className="relative -mt-4 -ml-4 mb-4 grid size-16 place-items-center rounded-full text-varqs-navy/60 transition-colors duration-500 before:absolute before:inset-0 before:scale-0 before:rounded-full before:bg-varqs-mint before:transition-transform before:duration-500 before:ease-out group-hover:text-varqs-navy group-hover:before:scale-100 motion-reduce:transition-none motion-reduce:before:transition-none">
                 <ServiceIcon />
               </span>
-              <h3 className="mb-2 text-base font-semibold text-varqs-navy">
-                {title}
-              </h3>
-              <p className="text-sm leading-6 text-varqs-navy/60">{text}</p>
+
+              <div>
+                <p className="mb-3 text-[11px] font-semibold tracking-widest text-varqs-navy">
+                  {pad(index + 1)}
+                </p>
+                <h3 className="mb-2 text-xl font-bold leading-snug text-varqs-navy">
+                  {title}
+                </h3>
+                <p className="text-sm leading-6 text-varqs-navy/70">{text}</p>
+              </div>
             </li>
           ))}
         </ul>
