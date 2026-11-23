@@ -1,12 +1,12 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import Casa1 from '../assets/Casa1.jpg'
-import Casa2 from '../assets/Casa2.jpg'
-import Casa3 from '../assets/Casa3.jpg'
+import Casa1 from '../assets/CASA UVITA EXTERNA.png'
+import Casa2 from '../assets/CASA_UVITA.jpg'
+import Casa3 from '../assets/OASIS_SERENO.jpg'
 
 const slides = [
-  { id: 1, src: Casa1, caption: 'Casa Umbral / Concepto' },
-  { id: 2, src: Casa2, caption: 'Casa 2 / Concepto' },
-  { id: 3, src: Casa3, caption: 'Casa 3 / Concepto' },
+  { id: 1, src: Casa1, caption: 'Casa Uvita Externa / Concepto' },
+  { id: 2, src: Casa2, caption: 'Casa Uvita / Concepto' },
+  { id: 3, src: Casa3, caption: 'Oasis Sereno / Concepto' },
 ]
 
 const INTERVAL_MS = 6000

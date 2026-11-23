@@ -20,7 +20,7 @@ export default function Navbar() {
         className="mx-auto flex h-18 max-w-7xl items-center justify-between px-6 md:grid md:grid-cols-[1fr_auto_1fr]"
       >
         <a href="#inicio" aria-label="VARQS Studio, ir al inicio" className="justify-self-start">
-          <img src="/VARQS.png" alt="VARQS Studio" className="h-14 w-auto" />
+          <img src="/Logo horizontal verde.png" alt="VARQS Studio" className="h-14 w-auto" />
         </a>
 
         <ul className="hidden items-center gap-9 md:flex">
