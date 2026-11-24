@@ -122,7 +122,6 @@ export default function Services() {
               key={title}
               className="group flex flex-col bg-white p-7 shadow-sm transition duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-varqs-navy/15 motion-reduce:transition-none motion-reduce:hover:translate-y-0"
             >
-              {/* Mint circle fills from the center on card hover */}
               <span className="relative -mt-4 -ml-4 mb-4 grid size-16 place-items-center rounded-full text-varqs-navy/60 transition-colors duration-500 before:absolute before:inset-0 before:scale-0 before:rounded-full before:bg-varqs-mint before:transition-transform before:duration-500 before:ease-out group-hover:text-varqs-navy group-hover:before:scale-100 motion-reduce:transition-none motion-reduce:before:transition-none">
                 <ServiceIcon />
               </span>

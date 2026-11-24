@@ -4,7 +4,7 @@ import { useState } from 'react'
 const CONTACT = {
   email: 'info@varqsstudio.com',
   whatsapp: '+506 8476 1991',
-  whatsappNumber: '50684761991', 
+  whatsappNumber: '50684761991',
   instagram: '@varqsstudio',
   instagramUrl: 'https://www.instagram.com/varqsstudio',
 }
@@ -79,6 +79,21 @@ function SelectField({ id, name, label, hint, placeholder, options, className })
   )
 }
 
+const HIGHLIGHTS = [
+  {
+    title: 'Visualizar antes de decidir',
+    text: 'Presentamos recursos gráficos y recorridos virtuales para que el cliente entienda el espacio antes de construir.',
+  },
+  {
+    title: 'Materialidad y atmósfera',
+    text: 'Los moodboards ayudan a alinear estilo, sensaciones, acabados y criterios de diseño desde etapas tempranas.',
+  },
+  {
+    title: 'Ajustes con dirección',
+    text: 'Revisamos observaciones iniciales sin perder coherencia entre necesidades, presupuesto y propuesta arquitectónica.',
+  },
+]
+
 export default function Contact() {
   const [sent, setSent] = useState(false)
 
@@ -128,53 +143,13 @@ export default function Contact() {
             Proyectos claros, viables y listos para construir.
           </h2>
 
-          <p className="max-w-sm text-sm leading-6 text-varqs-navy/80">
-            Cuéntanos qué tienes en mente. Revisaremos el alcance, la ubicación
-            y la inversión prevista para valorar cómo acompañarte.
-          </p>
-
-          <div className="mt-10 max-w-sm bg-varqs-mint p-6">
-            <p className="mb-3 text-base font-bold text-varqs-navy">
-              Diseñamos. No construimos.
-            </p>
-            <p className="text-xs leading-5 text-varqs-navy">
-              La ejecución de obra la realizan constructoras aliadas. VARQS
-              Studio da seguimiento mediante inspecciones periódicas.
-            </p>
-          </div>
-
-          <ul className="mt-10 grid gap-4 text-sm">
-            <li>
-              <p className="text-[11px] font-bold text-varqs-navy">Correo</p>
-              <a
-                href={`mailto:${CONTACT.email}`}
-                className="text-varqs-navy/80 transition-colors hover:text-varqs-navy focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-varqs-mint"
-              >
-                {CONTACT.email}
-              </a>
-            </li>
-            <li>
-              <p className="text-[11px] font-bold text-varqs-navy">WhatsApp</p>
-              <a
-                href={`https://wa.me/${CONTACT.whatsappNumber}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-varqs-navy/80 transition-colors hover:text-varqs-navy focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-varqs-mint"
-              >
-                {CONTACT.whatsapp}
-              </a>
-            </li>
-            <li>
-              <p className="text-[11px] font-bold text-varqs-navy">Instagram</p>
-              <a
-                href={CONTACT.instagramUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-varqs-navy/80 transition-colors hover:text-varqs-navy focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-varqs-mint"
-              >
-                {CONTACT.instagram}
-              </a>
-            </li>
+          <ul className="grid gap-3">
+            {HIGHLIGHTS.map(({ title, text }) => (
+              <li key={title} className="relative bg-varqs-mint p-6 shadow-sm transition-transform duration-300 ease-out hover:z-10 hover:scale-[1.03] motion-reduce:transition-none motion-reduce:hover:scale-100">
+                <h3 className="mb-3 text-base font-bold text-varqs-navy">{title}</h3>
+                <p className="text-sm leading-6 text-varqs-navy/70">{text}</p>
+              </li>
+            ))}
           </ul>
         </div>
 

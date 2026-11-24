@@ -96,17 +96,15 @@ export default function HeroCarousel() {
       <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col px-6">
         <div className="flex flex-1 flex-col justify-center py-12">
           <p className="mb-6 text-[11px] font-semibold uppercase tracking-widest text-varqs-mint">
-            VARQS Studio / Costa Rica
+            VARQS Studio  /  Arquitectura
           </p>
 
           <h1 className="max-w-4xl text-balance text-4xl font-bold leading-[1.05] sm:text-5xl lg:text-6xl">
-            Diseño arquitectónico con identidad tropical
+            CONSULTORÍA EN ARQUITECTURA
           </h1>
 
           <p className="mt-8 max-w-md text-base leading-relaxed text-white/90 sm:text-lg">
-            Arquitectura, interiores y paisaje.
-            <br />
-            Una visión integral, diseñada para ti.
+            VARQS Studio acompaña cada decisión desde la idea inicial hasta la preparación técnica del proyecto
           </p>
 
           <a
