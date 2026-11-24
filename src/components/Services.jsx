@@ -105,7 +105,6 @@ export default function Services() {
     >
       <div className="mx-auto max-w-6xl">
         <header className="mb-12 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-          {/* The line is navy here because the section background is mint */}
           <h2
             tabIndex={0}
             className="relative inline-block self-start pb-2 text-4xl font-bold leading-tight text-varqs-navy outline-none after:absolute after:bottom-0 after:left-0 after:h-0.75 after:w-full after:origin-center after:scale-x-0 after:rounded-full after:bg-varqs-navy after:transition-transform after:duration-500 after:ease-out hover:after:scale-x-100 focus-visible:after:scale-x-100 motion-reduce:after:transition-none sm:text-5xl"
