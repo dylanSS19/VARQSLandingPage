@@ -13,6 +13,10 @@ const INTERVAL_MS = 6000
 
 const pad = (number) => String(number).padStart(2, '0')
 
+// The custom cursor and click-to-navigate only apply to mouse-like devices
+const hasFinePointer = () =>
+  window.matchMedia('(hover: hover) and (pointer: fine)').matches
+
 function Chevron({ direction }) {
   return (
     <svg
@@ -33,7 +37,9 @@ function Chevron({ direction }) {
 export default function HeroCarousel() {
   const [current, setCurrent] = useState(0)
   const [paused, setPaused] = useState(false)
+  const [cursor, setCursor] = useState({ side: 'right', visible: false })
   const touchStartX = useRef(null)
+  const cursorRef = useRef(null)
   const total = slides.length
 
   const next = useCallback(() => setCurrent((i) => (i + 1) % total), [total])
@@ -65,14 +71,56 @@ export default function HeroCarousel() {
     else prev()
   }
 
+  // The cursor follows the mouse and points left or right depending on
+  // which half of the hero it is over. It hides over links and buttons.
+  const handleMouseMove = (event) => {
+    if (!hasFinePointer()) return
+
+    const rect = event.currentTarget.getBoundingClientRect()
+    const x = event.clientX - rect.left
+    const y = event.clientY - rect.top
+
+    if (cursorRef.current) {
+      cursorRef.current.style.transform = `translate(${x}px, ${y}px) translate(-50%, -50%)`
+    }
+
+    const side = x < rect.width / 2 ? 'left' : 'right'
+    const visible = !event.target.closest('a, button')
+
+    setCursor((previous) =>
+      previous.side === side && previous.visible === visible
+        ? previous
+        : { side, visible },
+    )
+  }
+
+  const handleMouseLeave = () => {
+    setPaused(false)
+    setCursor((previous) =>
+      previous.visible ? { ...previous, visible: false } : previous,
+    )
+  }
+
+  // Click on the left half goes back, on the right half goes forward
+  const handleClick = (event) => {
+    if (!hasFinePointer()) return
+    if (event.target.closest('a, button')) return
+
+    const rect = event.currentTarget.getBoundingClientRect()
+    if (event.clientX - rect.left < rect.width / 2) prev()
+    else next()
+  }
+
   return (
     <section
       id="inicio"
       aria-roledescription="carousel"
       aria-label="Proyectos destacados"
-      className="relative h-[calc(100svh-4.5rem)] min-h-150 w-full overflow-hidden bg-varqs-navy text-white"
+      className="relative h-[calc(100svh-4.5rem)] min-h-150 w-full cursor-none select-none overflow-hidden bg-varqs-navy text-white [&_a]:cursor-pointer [&_button]:cursor-pointer"
       onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
+      onMouseLeave={handleMouseLeave}
+      onMouseMove={handleMouseMove}
+      onClick={handleClick}
       onFocus={() => setPaused(true)}
       onBlur={() => setPaused(false)}
       onTouchStart={handleTouchStart}
@@ -168,6 +216,32 @@ export default function HeroCarousel() {
           >
             Explora el estudio <span aria-hidden="true">↓</span>
           </a>
+        </div>
+      </div>
+
+      <div
+        ref={cursorRef}
+        aria-hidden="true"
+        className="pointer-events-none absolute left-0 top-0 z-20"
+      >
+        <div
+          className={`grid size-16 place-items-center rounded-full border border-white/70 bg-varqs-navy/40 text-white backdrop-blur-sm transition-[opacity,scale] duration-200 ease-out motion-reduce:transition-none ${
+            cursor.visible ? 'scale-100 opacity-100' : 'scale-50 opacity-0'
+          }`}
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className={`size-6 transition-transform duration-300 ease-out motion-reduce:transition-none ${
+              cursor.side === 'left' ? 'rotate-180' : 'rotate-0'
+            }`}
+          >
+            <path d="M5 12h14m-6-6 6 6-6 6" />
+          </svg>
         </div>
       </div>
     </section>
